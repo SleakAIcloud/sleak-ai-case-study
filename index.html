@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sleak AI | AI-Powered Sales Training Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #000000;
+            --secondary: #ffffff;
+            --accent: #00ff9d;
+            --accent-glow: rgba(0, 255, 157, 0.3);
+            --text-dim: #aaaaaa;
+            --neon-border: 1px solid var(--accent);
+            --neon-shadow: 0 0 10px var(--accent-glow);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--primary);
+            color: var(--secondary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 255, 157, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 255, 157, 0.05) 0%, transparent 20%);
+        }
+        
+        h1, h2, h3, h4, .logo, .nav-links a, .btn {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header & Navigation */
+        header {
+            padding: 25px 0;
+            border-bottom: var(--neon-border);
+            box-shadow: var(--neon-shadow);
+            position: sticky;
+            top: 0;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            color: var(--accent);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            letter-spacing: 2px;
+        }
+        
+        .logo i {
+            font-size: 1.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, transparent 30%, var(--primary) 70%);
+            z-index: -1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, var(--accent), #ffffff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: var(--text-dim);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 35px;
+            background-color: transparent;
+            color: var(--accent);
+            border: var(--neon-border);
+            border-radius: 0;
+            text-decoration: none;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--accent-glow), transparent);
+            transition: left 0.7s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            box-shadow: var(--neon-shadow);
+            color: var(--primary);
+            background-color: var(--accent);
+        }
+        
+        /* Video Section */
+        .video-section {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--accent);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            border: var(--neon-border);
+            box-shadow: var(--neon-shadow);
+            overflow: hidden;
+            background-color: #111;
+        }
+        
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+        }
+        
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Case Study Section */
+        .case-study {
+            padding: 80px 0;
+        }
+        
+        .case-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .case-card {
+            background: rgba(20, 20, 20, 0.8);
+            border: 1px solid #333;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .case-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: var(--accent);
+        }
+        
+        .case-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 157, 0.1);
+            border-color: var(--accent);
+        }
+        
+        .case-card h3 {
+            color: var(--accent);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .case-card p {
+            color: var(--text-dim);
+            margin-bottom: 20px;
+        }
+        
+        .case-card ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        
+        .case-card li {
+            margin-bottom: 8px;
+            color: var(--text-dim);
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .case-card li::before {
+            content: '▸';
+            color: var(--accent);
+            position: absolute;
+            left: 0;
+        }
+        
+        /* Documentation Section */
+        .documentation {
+            padding: 80px 0;
+            background-color: rgba(10, 10, 10, 0.7);
+        }
+        
+        .doc-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .doc-item {
+            text-align: center;
+            padding: 30px;
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+        
+        .doc-item:hover {
+            border-color: var(--accent);
+            box-shadow: var(--neon-shadow);
+        }
+        
+        .doc-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+        
+        .doc-item h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        .doc-item p {
+            color: var(--text-dim);
+            margin-bottom: 20px;
+        }
+        
+        /* Google Cloud Integration */
+        .integration {
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .tech-item {
+            padding: 20px;
+            border: 1px solid #333;
+            min-width: 150px;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-item:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .tech-item i {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+        }
+        
+        /* Footer */
+        footer {
+            padding: 60px 0 30px;
+            border-top: var(--neon-border);
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .contact-info {
+            margin-bottom: 30px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+            color: var(--text-dim);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .social-links a {
+            color: var(--secondary);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .nav-links {
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .nav-links {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero {
+                padding: 70px 0;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .btn {
+                padding: 12px 25px;
+                font-size: 0.9rem;
+            }
+            
+            .case-grid, .doc-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00ff;
+            clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        
+        .glitch::after {
+            left: -2px;
+            text-shadow: -2px 0 #00ffff;
+            clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim2 5s infinite linear alternate-reverse;
+        }
+        
+        @keyframes glitch-anim {
+            0% { clip: rect(31px, 9999px, 94px, 0); }
+            5% { clip: rect(112px, 9999px, 76px, 0); }
+            10% { clip: rect(85px, 9999px, 77px, 0); }
+            15% { clip: rect(27px, 9999px, 97px, 0); }
+            20% { clip: rect(64px, 9999px, 98px, 0); }
+            25% { clip: rect(61px, 9999px, 85px, 0); }
+            30% { clip: rect(99px, 9999px, 74px, 0); }
+            35% { clip: rect(4px, 9999px, 61px, 0); }
+            40% { clip: rect(42px, 9999px, 69px, 0); }
+            45% { clip: rect(23px, 9999px, 28px, 0); }
+            50% { clip: rect(82px, 9999px, 30px, 0); }
+            55% { clip: rect(91px, 9999px, 74px, 0); }
+            60% { clip: rect(7px, 9999px, 16px, 0); }
+            65% { clip: rect(80px, 9999px, 55px, 0); }
+            70% { clip: rect(77px, 9999px, 87px, 0); }
+            75% { clip: rect(47px, 9999px, 37px, 0); }
+            80% { clip: rect(83px, 9999px, 20px, 0); }
+            85% { clip: rect(61px, 9999px, 56px, 0); }
+            90% { clip: rect(84px, 9999px, 21px, 0); }
+            95% { clip: rect(83px, 9999px, 59px, 0); }
+            100% { clip: rect(44px, 9999px, 73px, 0); }
+        }
+        
+        @keyframes glitch-anim2 {
+            0% { clip: rect(65px, 9999px, 100px, 0); }
+            5% { clip: rect(52px, 9999px, 74px, 0); }
+            10% { clip: rect(79px, 9999px, 85px, 0); }
+            15% { clip: rect(75px, 9999px, 5px, 0); }
+            20% { clip: rect(67px, 9999px, 61px, 0); }
+            25% { clip: rect(14px, 9999px, 79px, 0); }
+            30% { clip: rect(1px, 9999px, 66px, 0); }
+            35% { clip: rect(86px, 9999px, 30px, 0); }
+            40% { clip: rect(23px, 9999px, 98px, 0); }
+            45% { clip: rect(85px, 9999px, 72px, 0); }
+            50% { clip: rect(71px, 9999px, 75px, 0); }
+            55% { clip: rect(2px, 9999px, 48px, 0); }
+            60% { clip: rect(30px, 9999px, 16px, 0); }
+            65% { clip: rect(59px, 9999px, 50px, 0); }
+            70% { clip: rect(41px, 9999px, 62px, 0); }
+            75% { clip: rect(2px, 9999px, 82px, 0); }
+            80% { clip: rect(47px, 9999px, 73px, 0); }
+            85% { clip: rect(3px, 9999px, 27px, 0); }
+            90% { clip: rect(40px, 9999px, 86px, 0); }
+            95% { clip: rect(45px, 9999px, 73px, 0); }
+            100% { clip: rect(9px, 9999px, 100px, 0); }
+        }
+        
+        /* Scanning line animation */
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--accent), transparent);
+            animation: scan 3s linear infinite;
+            z-index: 10;
+            opacity: 0.7;
+        }
+        
+        @keyframes scan {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <i class="fas fa-robot"></i>
+                <span>SLEAK AI</span>
+            </a>
+            <nav class="nav-links">
+                <a href="#case-study">Case Study</a>
+                <a href="#video">Demo</a>
+                <a href="#documentation">Documentation</a>
+                <a href="#integration">Integration</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="glitch" data-text="REVOLUTIONIZE SALES TRAINING WITH AI">REVOLUTIONIZE SALES TRAINING WITH AI</h1>
+            <p>Sleak AI is an AI-driven training platform designed to revolutionize how sales teams develop their skills through realistic role-play simulations. At its core, Sleak AI leverages generative AI to recreate real-world sales scenarios.</p>
+            <a href="#case-study" class="btn">EXPLORE CASE STUDY</a>
+        </div>
+        <div class="scan-line"></div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section" id="video">
+        <div class="container">
+            <h2 class="section-title">PLATFORM DEMONSTRATION</h2>
+            <div class="video-container">
+                <div class="video-wrapper">
+                    <iframe src="https://www.youtube.com/embed/8fjiAoCMKtg" title="Sleak AI Platform Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+            </div>
+            <p style="margin-top: 30px; color: var(--text-dim); max-width: 800px; margin-left: auto; margin-right: auto;">
+                Watch how Sleak AI transforms sales training through AI-powered conversation simulations and real-time feedback.
+            </p>
+        </div>
+    </section>
+
+    <!-- Case Study Section -->
+    <section class="case-study" id="case-study">
+        <div class="container">
+            <h2 class="section-title">ENTERPRISE CASE STUDY</h2>
+            <div class="case-grid">
+                <div class="case-card">
+                    <h3>Challenge</h3>
+                    <p>A global telecommunications company with 500+ sales representatives faced challenges in consistent training and skill assessment across multiple regions.</p>
+                    <ul>
+                        <li>High onboarding time for new sales reps (3+ months)</li>
+                        <li>Inconsistent sales techniques across regions</li>
+                        <li>Difficulty measuring training effectiveness</li>
+                        <li>Limited personalized coaching resources</li>
+                    </ul>
+                </div>
+                <div class="case-card">
+                    <h3>Solution</h3>
+                    <p>Implementation of Sleak AI's platform customized for telecom sales scenarios, integrating with existing CRM and product databases.</p>
+                    <ul>
+                        <li>Deployed AI buyer personas for telecom-specific scenarios</li>
+                        <li>Integrated with Google Cloud AI/ML services for natural language processing</li>
+                        <li>Created customized training modules for different product lines</li>
+                        <li>Implemented real-time analytics dashboard for managers</li>
+                    </ul>
+                </div>
+                <div class="case-card">
+                    <h3>Results</h3>
+                    <p>Within 6 months of implementation, the company achieved measurable improvements in sales performance and training efficiency.</p>
+                    <ul>
+                        <li>Reduced onboarding time by 58% (from 3 months to 5 weeks)</li>
+                        <li>Increased sales conversion rates by 22%</li>
+                        <li>Improved customer satisfaction scores by 18%</li>
+                        <li>Saved $350K annually in training costs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Documentation Section -->
+    <section class="documentation" id="documentation">
+        <div class="container">
+            <h2 class="section-title">TECHNICAL DOCUMENTATION</h2>
+            <div class="doc-grid">
+                <div class="doc-item">
+                    <div class="doc-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Implementation Guide</h3>
+                    <p>Step-by-step guide to integrate Sleak AI with your existing sales training infrastructure.</p>
+                    <a href="#" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">Download PDF</a>
+                </div>
+                <div class="doc-item">
+                    <div class="doc-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>ROI Analysis</h3>
+                    <p>Detailed analysis of return on investment and performance metrics across industries.</p>
+                    <a href="#" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">Download PDF</a>
+                </div>
+                <div class="doc-item">
+                    <div class="doc-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>API Documentation</h3>
+                    <p>Complete API reference for custom integrations and advanced platform customization.</p>
+                    <a href="#" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">View Docs</a>
+                </div>
+                <div class="doc-item">
+                    <div class="doc-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Security Whitepaper</h3>
+                    <p>Comprehensive security overview, compliance certifications, and data protection measures.</p>
+                    <a href="#" class="btn" style="padding: 10px 20px; font-size: 0.9rem;">Download PDF</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Google Cloud Integration -->
+    <section class="integration" id="integration">
+        <div class="container">
+            <h2 class="section-title">GOOGLE CLOUD INTEGRATION</h2>
+            <p style="max-width: 800px; margin: 0 auto 50px; color: var(--text-dim);">
+                Sleak AI leverages Google Cloud's advanced AI/ML capabilities to deliver scalable, secure, and intelligent sales training solutions.
+            </p>
+            <div class="tech-stack">
+                <div class="tech-item">
+                    <i class="fab fa-google"></i>
+                    <h4>Dialogflow</h4>
+                    <p>Natural Language Processing</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-brain"></i>
+                    <h4>Vertex AI</h4>
+                    <p>Machine Learning Models</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-microphone"></i>
+                    <h4>Speech-to-Text</h4>
+                    <p>Real-time Transcription</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-database"></i>
+                    <h4>BigQuery</h4>
+                    <p>Analytics & Reporting</p>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-cloud"></i>
+                    <h4>Cloud Storage</h4>
+                    <p>Secure Data Management</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-logo">SLEAK AI</div>
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> lennard@sleakai.cloud</p>
+                <p><i class="fas fa-globe"></i> https://sleakai.cloud</p>
+                <p><i class="fas fa-building"></i> Enterprise AI Sales Training Platform</p>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+            </div>
+            <div class="copyright">
+                &copy; 2023 Sleak AI. All rights reserved. | Revolutionizing Sales Training with Artificial Intelligence
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add scanning line to video container
+        document.addEventListener('DOMContentLoaded', function() {
+            const videoContainer = document.querySelector('.video-container');
+            const scanLine = document.createElement('div');
+            scanLine.className = 'scan-line';
+            videoContainer.appendChild(scanLine);
+            
+            // Add glitch effect to section titles on hover
+            const titles = document.querySelectorAll('.section-title');
+            titles.forEach(title => {
+                title.addEventListener('mouseenter', function() {
+                    this.classList.add('glitch');
+                    this.setAttribute('data-text', this.textContent);
+                });
+                
+                title.addEventListener('mouseleave', function() {
+                    this.classList.remove('glitch');
+                });
+            });
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if(targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if(targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Add periodic glitch effect to hero title
+            const heroTitle = document.querySelector('.hero h1');
+            setInterval(() => {
+                heroTitle.classList.toggle('glitch');
+            }, 8000);
+        });
+    </script>
+</body>
+</html>
